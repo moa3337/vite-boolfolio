@@ -29,6 +29,9 @@ export default {
                     this.projects.data = response.data.data;
                     this.projects.pages = response.data.links;
                 })
+                .catch((err) => {
+                    this.error = err.message;
+                });
         },
     },
 
@@ -41,8 +44,12 @@ export default {
 <template>
     <div>
         <h1>{{ title }}</h1>
-        <div v-if="projects.list.length" class="row g-4">
-            <ProjectCard v-for="project in projects.list" :key="project.id" :project="project" class="col-md-4 d-flex" />
+        <div v-if="error" class="alert alert-danger" role="alert">
+            {{ erroe }}
+        </div>
+        <div v-else-if="projects.data.length" class="row g-4">
+            <ProjectCard v-for="project in projects.data" :key="project.id" :project="project" :isDetail="false"
+                class="col-md-4 d-flex" />
         </div>
         <h2 v-else class="">
             In questo momento non ci sono progetti.
