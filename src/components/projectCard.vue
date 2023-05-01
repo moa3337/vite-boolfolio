@@ -10,7 +10,7 @@ export default {
 
     computed: {
         abstract() {
-            return this.project.text.slice(0, 180) + "...";
+            return this.project.text.slice(0, 200) + "...";
         },
     },
 };
@@ -23,12 +23,14 @@ export default {
                 <h3>{{ project.title }}</h3>
                 <div v-if="isDetail">
                     Tipologia:
-                    <span v-if="project.type" class="badge" :style="{ backgroundColor: project.type.color }">
+                    <span v-if="project.type" :to="{
+                            name: 'type-projects', params: { type_id: project.type_id, },
+                        }" class="badge" :style="{ backgroundColor: project.type.color }">
                         {{ project.type.label }}
                     </span>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body clearfix">
                 <div v-if="isDetail">
                     Tecnologia
                     <span v-for=" technology  in  project.technologies " class="badge rounded-pill me-2"
@@ -37,6 +39,7 @@ export default {
                     </span>
                     <hr>
                 </div>
+                <img :src="project.image" class="float-end img-fluid w-25" :class="{ '': isDetail }" :alt="project.title">
                 {{ project.text }}
             </div>
             <div class="card-footer">

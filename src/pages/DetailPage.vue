@@ -1,5 +1,6 @@
 <script>
 import projectCard from '../components/projectCard.vue';
+import CommentList from '../components/CommentList.vue';
 import axios from 'axios';
 
 export default {
@@ -11,7 +12,7 @@ export default {
         };
     },
 
-    components: { projectCard },
+    components: { projectCard, CommentList },
 
     created() {
         axios
@@ -34,6 +35,7 @@ export default {
 <template>
     <h2 class="my-3">Dettaglio del progetto {{ project?.title }}</h2>
     <projectCard v-if="project" :project="project" :isDetail="true" />
+    <CommentList :project_id="project.id" />
 </template>
 
 <style lang="scss" scoped></style>

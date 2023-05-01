@@ -14,7 +14,7 @@ export default {
     },
 
     props: {
-        tile: String,
+        title: String,
     },
 
     components: { ProjectCard, AppPagination },
