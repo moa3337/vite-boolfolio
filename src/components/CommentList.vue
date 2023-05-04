@@ -7,7 +7,7 @@ export default {
 
     data() {
         return {
-            Comments: {
+            comments: {
                 list: [],
                 links: [],
             },
